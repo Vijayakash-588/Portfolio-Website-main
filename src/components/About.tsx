@@ -6,9 +6,10 @@ const About = () => {
       <div className="about-me">
         <h3 className="title">About Me</h3>
         <p className="para">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quis
-          dolores numquam iusto Ratione earum ducimus autem id iure pariatur
-          dolorum quae maiores.
+          I am a creative and user-focused UI/UX Designer with a strong
+          foundation in user research, prototyping, and interaction design.
+          I build human-centered designs that align user needs with business
+          goals and ship pixel-perfect frontend implementations.
         </p>
       </div>
     </div>

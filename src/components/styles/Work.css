@@ -208,3 +208,15 @@
     height: auto;
   }
 }
+
+/* Native horizontal scroll fallback when GSAP isn't active */
+.work-scroll-native .work-flex {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.work-scroll-native .work-flex {
+  display: flex;
+}
+.work-scroll-native .work-box {
+  flex: 0 0 auto;
+}

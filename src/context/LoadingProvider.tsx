@@ -16,8 +16,8 @@ interface LoadingType {
 export const LoadingContext = createContext<LoadingType | null>(null);
 
 export const LoadingProvider = ({ children }: PropsWithChildren) => {
-  // Disable initial loading screen by default
-  const [isLoading, setIsLoading] = useState(false);
+  // Restore initial loading screen state
+  const [isLoading, setIsLoading] = useState(true);
   const [loading, setLoading] = useState(0);
 
   const value = {
