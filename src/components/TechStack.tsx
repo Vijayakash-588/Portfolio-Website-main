@@ -128,12 +128,13 @@ const TechStack = () => {
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
+    const container = document.querySelector(".techstack");
     const handleScroll = () => {
-      const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const threshold = document
-        .getElementById("work")!
-        .getBoundingClientRect().top;
-      setIsActive(scrollY > threshold);
+      if (!container) return;
+      const rect = container.getBoundingClientRect();
+      // active when the techstack container is mostly within the viewport
+      const inView = rect.top < window.innerHeight * 0.9 && rect.bottom > 0;
+      setIsActive(inView);
     };
     document.querySelectorAll(".header a").forEach((elem) => {
       const element = elem as HTMLAnchorElement;
@@ -147,6 +148,8 @@ const TechStack = () => {
       });
     });
     window.addEventListener("scroll", handleScroll);
+    // run once to initialize
+    handleScroll();
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };

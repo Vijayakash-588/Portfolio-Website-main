@@ -1,7 +1,7 @@
 .hover-link {
   position: relative;
   display: flex;
-  text-wrap: nowrap;
+  white-space: nowrap;
   overflow: hidden;
 }
 .hover-in {

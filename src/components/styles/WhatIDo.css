@@ -22,8 +22,9 @@
   font-size: calc(4vw + 25px);
   line-height: calc(4vw + 20px);
   font-weight: 600;
-  margin-right: 10%;
+  margin-right: 0;
   margin-bottom: 100px;
+  text-align: left;
 }
 
 .hat-h2 {
@@ -35,7 +36,7 @@
 .what-box-in {
   flex-direction: column;
   height: 500px;
-  margin-left: 200px;
+  margin-left: 0;
   position: relative;
   display: none;
 }

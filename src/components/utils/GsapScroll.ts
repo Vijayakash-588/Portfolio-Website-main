@@ -1,5 +1,8 @@
 import * as THREE from "three";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function setCharTimeline(
   character: THREE.Object3D<THREE.Object3DEventMap> | null,
@@ -36,6 +39,15 @@ export function setCharTimeline(
       invalidateOnRefresh: true,
     },
   });
+  const tlMotion = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".container-main",
+      start: "top top",
+      end: "bottom bottom",
+      scrub: 1,
+      invalidateOnRefresh: true,
+    },
+  });
   let screenLight: any, monitor: any;
   character?.children.forEach((object: any) => {
     if (object.name === "Plane004") {
@@ -61,8 +73,41 @@ export function setCharTimeline(
     }
   });
   let neckBone = character?.getObjectByName("spine005");
-  if (window.innerWidth > 1024) {
+  if (window.innerWidth > 768) {
     if (character) {
+      tlMotion
+        .to(
+          character.rotation,
+          { y: 0.25, x: 0.08, z: -0.04, duration: 1, ease: "none" },
+          0
+        )
+        .to(camera.position, { z: 18.5, y: 12.5, duration: 1, ease: "none" }, 0)
+        .to(
+          ".character-model",
+          { x: "-4%", y: "0%", duration: 1, ease: "none" },
+          0
+        );
+
+      ScrollTrigger.create({
+        trigger: ".container-main",
+        start: "top top",
+        end: "bottom bottom",
+        onUpdate: (self) => {
+          const progress = self.progress;
+
+          character.position.x = THREE.MathUtils.lerp(-2.2, -3.4, progress);
+          character.position.y = THREE.MathUtils.lerp(-0.1, 0.25, Math.sin(progress * Math.PI));
+          character.rotation.y = THREE.MathUtils.lerp(0.08, 0.95, progress);
+          character.rotation.x = THREE.MathUtils.lerp(0.02, -0.08, progress);
+          character.rotation.z = THREE.MathUtils.lerp(0, 0.03, progress);
+
+          camera.position.x = THREE.MathUtils.lerp(0, -0.35, progress);
+          camera.position.y = THREE.MathUtils.lerp(12.5, 11.3, progress);
+          camera.position.z = THREE.MathUtils.lerp(18.5, 29, progress);
+          camera.lookAt(character.position);
+        },
+      });
+
       tl1
         .fromTo(character.rotation, { y: 0 }, { y: 0.7, duration: 1 }, 0)
         .to(camera.position, { z: 22 }, 0)
@@ -118,6 +163,8 @@ export function setCharTimeline(
         .fromTo(".whatIDO", { y: 0 }, { y: "15%", duration: 2 }, 0)
         .to(character.rotation, { x: -0.04, duration: 2, delay: 1 }, 0);
     }
+
+      ScrollTrigger.refresh();
   } else {
     if (character) {
       const tM2 = gsap.timeline({
@@ -173,7 +220,7 @@ export function setAllTimeline() {
       0
     );
 
-  if (window.innerWidth > 1024) {
+  if (window.innerWidth > 768) {
     careerTimeline.fromTo(
       ".career-section",
       { y: 0 },

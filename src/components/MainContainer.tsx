@@ -14,13 +14,13 @@ const TechStack = lazy(() => import("./TechStack"));
 
 const MainContainer = ({ children }: PropsWithChildren) => {
   const [isDesktopView, setIsDesktopView] = useState<boolean>(
-    window.innerWidth > 1024
+    window.innerWidth > 768
   );
 
   useEffect(() => {
     const resizeHandler = () => {
       setSplitText();
-      setIsDesktopView(window.innerWidth > 1024);
+      setIsDesktopView(window.innerWidth > 768);
     };
     resizeHandler();
     window.addEventListener("resize", resizeHandler);
@@ -34,11 +34,13 @@ const MainContainer = ({ children }: PropsWithChildren) => {
       <Cursor />
       <Navbar />
       <SocialIcons />
-      {isDesktopView && children}
+      {/* Character/model is passed into Landing so it stays centered with intro/info */}
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <div className="container-main">
-            <Landing>{!isDesktopView && children}</Landing>
+            {/* Always pass the CharacterModel as children so the model stays centered
+              between intro and info on desktop and mobile */}
+            <Landing>{children}</Landing>
             <About />
             <WhatIDo />
             <Career />

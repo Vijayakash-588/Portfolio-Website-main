@@ -2,26 +2,57 @@ import { useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HoverLinks from "./HoverLinks";
 import { gsap } from "gsap";
-import { ScrollSmoother } from "gsap-trial/ScrollSmoother";
 import "./styles/Navbar.css";
 
-gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
-export let smoother: ScrollSmoother;
+// Register only ScrollTrigger by default; ScrollSmoother (trial) will be
+// dynamically imported if available.
+gsap.registerPlugin(ScrollTrigger);
+export let smoother: any = null;
 
 const Navbar = () => {
   useEffect(() => {
-    smoother = ScrollSmoother.create({
-      wrapper: "#smooth-wrapper",
-      content: "#smooth-content",
-      smooth: 1.7,
-      speed: 1.7,
-      effects: true,
-      autoResize: true,
-      ignoreMobileResize: true,
-    });
+    let mounted = true;
 
-    smoother.scrollTop(0);
-    smoother.paused(true);
+    // Try to dynamically import ScrollSmoother (greensock trial plugin).
+    // Import via a variable so Vite won't statically analyze and fail the dev server.
+    const _pluginPath = "gsap-trial/ScrollSmoother";
+    try {
+      // @ts-ignore
+      import(/* @vite-ignore */ _pluginPath)
+        .then((mod) => {
+          if (!mounted) return;
+          const ScrollSmoother = mod?.ScrollSmoother || mod?.default || null;
+          if (!ScrollSmoother) {
+            smoother = createSmootherStub();
+            return;
+          }
+          try {
+            gsap.registerPlugin(ScrollSmoother);
+            smoother = ScrollSmoother.create({
+              wrapper: "#smooth-wrapper",
+              content: "#smooth-content",
+              smooth: 1.7,
+              speed: 1.7,
+              effects: true,
+              autoResize: true,
+              ignoreMobileResize: true,
+            });
+          } catch (e) {
+            // If creation fails, fallback to a minimal stub so other code can call methods safely
+            smoother = createSmootherStub();
+          }
+          try {
+            smoother.scrollTop(0);
+            smoother.paused(true);
+          } catch (e) {}
+        })
+        .catch(() => {
+          // plugin not available — create stub smoother so calls elsewhere don't crash
+          smoother = createSmootherStub();
+        });
+    } catch (e) {
+      smoother = createSmootherStub();
+    }
 
     let links = document.querySelectorAll(".header ul a");
     links.forEach((elem) => {
@@ -36,9 +67,28 @@ const Navbar = () => {
       });
     });
     window.addEventListener("resize", () => {
-      ScrollSmoother.refresh(true);
+      // refresh if plugin exists
+      try {
+        // @ts-ignore
+        if (window?.ScrollSmoother) window.ScrollSmoother.refresh(true);
+      } catch (e) {}
     });
+    return () => {
+      mounted = false;
+      window.removeEventListener("resize", () => {});
+    };
   }, []);
+
+// Minimal smoother stub to prevent runtime errors when ScrollSmoother isn't available
+function createSmootherStub() {
+  return {
+    scrollTop: () => {},
+    scrollTo: () => {},
+    // single paused handler that accepts any args (prevents unused-param errors)
+    paused: (..._args: any[]) => {},
+    kill: () => {},
+  };
+}
   return (
     <>
       <div className="header">
