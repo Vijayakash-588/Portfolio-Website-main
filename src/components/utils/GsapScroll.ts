@@ -6,7 +6,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function setCharTimeline(
   character: THREE.Object3D<THREE.Object3DEventMap> | null,
-  camera: THREE.PerspectiveCamera
 ) {
   let intensity: number = 0;
   setInterval(() => {
