@@ -1,3 +1,6 @@
+/* =====================================================
+   LANDING – base (mobile-first)
+   ===================================================== */
 .landing-section {
   width: 100%;
   max-width: var(--cMaxWidth);
@@ -12,6 +15,8 @@
   position: relative;
   max-width: var(--cMaxWidth);
 }
+
+/* ---- decorative circles ---- */
 .landing-circle1 {
   top: 0%;
   left: 0%;
@@ -25,28 +30,9 @@
   border-radius: 50%;
   animation: loadingCircle 5s linear infinite;
 }
-.nav-fade {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 130px;
-  background-image: linear-gradient(
-    0deg,
-    transparent,
-    var(--backgroundColor) 70%
-  );
-  pointer-events: none;
-  z-index: 12;
-  opacity: 0;
-  left: 0;
-}
 @keyframes loadingCircle {
-  0% {
-    transform: translate(-95%, -75%) rotateZ(0deg);
-  }
-  100% {
-    transform: translate(-95%, -75%) rotateZ(360deg);
-  }
+  0%   { transform: translate(-95%, -75%) rotateZ(0deg); }
+  100% { transform: translate(-95%, -75%) rotateZ(360deg); }
 }
 
 .landing-circle2 {
@@ -65,10 +51,23 @@
   animation: loadingCircle2 5s linear infinite;
 }
 @keyframes loadingCircle2 {
-  100% {
-    transform: translate(calc(100% - 2px), -50%) rotate(360deg);
-  }
+  100% { transform: translate(calc(100% - 2px), -50%) rotate(360deg); }
 }
+
+/* ---- nav fade ---- */
+.nav-fade {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 130px;
+  background-image: linear-gradient(0deg, transparent, var(--backgroundColor) 70%);
+  pointer-events: none;
+  z-index: 12;
+  opacity: 0;
+  left: 0;
+}
+
+/* ---- image / video ---- */
 .landing-video,
 .landing-image {
   position: absolute;
@@ -82,13 +81,14 @@
   z-index: 2;
   position: relative;
 }
+
+/* ---- character model (mobile default – centered, absolute) ---- */
 .character-rim {
   position: absolute;
   width: 400px;
   height: 400px;
   z-index: 1;
   background-color: #f59bf8;
-  transform: translate(-50%, 36%) scaleX(1.4);
   box-shadow: inset 66px 35px 85px 0px rgba(85, 0, 255, 0.65);
   filter: blur(50px);
   border-radius: 50%;
@@ -97,28 +97,26 @@
   transform: translate(-50%, 100%) scale(1.4);
   opacity: 0;
 }
+
 .character-model {
-  height: 80%;
   height: 80vh;
   position: absolute;
   max-width: 1920px;
   max-height: 1080px;
-  transform: translateX(-50%);
   width: 100%;
   left: 50%;
+  transform: translateX(-50%);
   z-index: 0;
   bottom: 50px;
   pointer-events: inherit;
 }
+
+/* gradient overlays (mobile only – hidden on desktop via media query) */
 .character-model::after {
   content: "";
   width: 100vw;
   height: 250px;
-  background-image: linear-gradient(
-    to bottom,
-    transparent,
-    var(--backgroundColor) 70%
-  );
+  background-image: linear-gradient(to bottom, transparent, var(--backgroundColor) 70%);
   bottom: -50px;
   left: 50%;
   transform: translateX(-50%);
@@ -136,16 +134,19 @@
   z-index: 9;
   position: absolute;
 }
+
 .character-loaded .character-rim {
   animation: backlight 3s forwards;
   animation-delay: 0.3s;
   opacity: 0;
 }
+
 .character-model canvas {
   position: relative;
   pointer-events: none;
   z-index: 2;
 }
+
 .character-hover {
   position: absolute;
   width: 280px;
@@ -156,6 +157,8 @@
   transform: translate(-50%, -50%);
   border-radius: 50%;
 }
+
+/* ---- intro text (mobile – absolute top-left) ---- */
 .landing-intro {
   position: absolute;
   z-index: 9;
@@ -169,7 +172,6 @@
   font-weight: 300;
   letter-spacing: 2px;
 }
-
 .landing-intro h1 {
   margin: 0;
   letter-spacing: 2px;
@@ -179,10 +181,7 @@
   font-family: "Geist", sans-serif;
 }
 
-/* .landing-intro h1 span {
-   font-weight: 200; 
-} */
-
+/* ---- info panel (mobile – absolute bottom) ---- */
 .landing-info {
   position: absolute;
   right: 50%;
@@ -200,199 +199,153 @@
   margin: 0;
   margin-bottom: 8px;
 }
-.landing-info h2 {
-  margin: 0;
-  margin-top: 0;
-  margin-left: 0;
-  font-family: "Geist", sans-serif;
-  font-weight: 600;
-  font-size: 32px;
-  line-height: 40px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  gap: 6px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
 .landing-info-copy,
 .landing-info-h2 {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
-.landing-h2-info-1 {
-  position: static;
-}
 h2.landing-info-h2 {
   color: #c481ff;
-  font-size: 42px;
+  font-size: 32px;
   width: 100%;
   margin: 0;
   font-family: "Geist", sans-serif;
   font-weight: 600;
   position: relative;
-  margin-left: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.2;
+  display: flex;
+  flex-direction: column;
   gap: 12px;
 }
-.landing-h2-2 {
-  position: static;
-}
+.landing-h2-info-1 { position: static; }
+.landing-h2-2      { position: static; }
+
+/* gradient mask on h2 */
 .landing-info-h2::after {
   content: "";
   position: absolute;
   width: 100%;
   height: 120%;
   z-index: 3;
-  background-image: linear-gradient(
-    0deg,
-    var(--backgroundColor) 40%,
-    rgba(0, 0, 0, 0) 110%
-  );
+  background-image: linear-gradient(0deg, var(--backgroundColor) 40%, rgba(0,0,0,0) 110%);
   top: 0;
   left: 0;
 }
+
+/* =====================================================
+   500 px +
+   ===================================================== */
 @media screen and (min-width: 500px) {
-  .landing-circle2 {
-    display: block;
-  }
-  .character-model {
-    z-index: 0;
-  }
-  .landing-info h3 {
-    font-size: 18px;
-  }
-  .landing-intro h2 {
-    font-size: 18px;
-  }
-  .landing-intro h1 {
-    font-size: 30px;
-    line-height: 30px;
-  }
-  .landing-info h2 {
-    font-size: 35px;
-    line-height: 40px;
-  }
-  h2.landing-info-h2 {
-    font-size: 38px;
-  }
+  .landing-circle2 { display: block; }
+  .landing-info h3       { font-size: 18px; }
+  .landing-intro h2      { font-size: 18px; }
+  .landing-intro h1      { font-size: 30px; line-height: 30px; }
+  h2.landing-info-h2     { font-size: 38px; }
 }
+
+/* =====================================================
+   768 px +
+   ===================================================== */
 @media screen and (min-width: 768px) {
-  .character-model {
-    height: 80vh;
-  }
-  .landing-intro h2 {
-    font-size: 25px;
-  }
-  .landing-intro h1 {
-    font-size: 40px;
-    line-height: 35px;
-  }
-  .landing-info h3 {
-    font-size: 25px;
-  }
-  .landing-info h2 {
-    font-size: 45px;
-    line-height: 42px;
-  }
-  h2.landing-info-h2 {
-    font-size: 55px;
-  }
+  .character-model       { height: 80vh; }
+  .landing-intro h2      { font-size: 25px; }
+  .landing-intro h1      { font-size: 40px; line-height: 35px; }
+  .landing-info h3       { font-size: 25px; }
+  h2.landing-info-h2     { font-size: 55px; }
 }
+
+/* =====================================================
+   900 px +  – desktop layout
+   Text columns on sides, model as fixed full-screen overlay
+   ===================================================== */
 @media screen and (min-width: 900px) {
-  .character-model {
-    height: 100vh;
-    bottom: 0;
-    z-index: 11;
-    position: fixed;
-  }
+  /* hide mobile gradient overlays */
   .character-model::after,
-  .character-model::before {
-    display: none;
-  }
-  /* Use a centered 3-column layout: intro | model | info */
+  .character-model::before { display: none; }
+
+  /* flex row — only text columns participate */
   .landing-container {
     display: flex;
     align-items: center;
-    justify-content: center;
-    position: relative;
+    justify-content: space-between;
     height: 100vh;
+    position: relative;
   }
 
+  /* LEFT column – intro text */
   .landing-intro {
     position: relative;
     top: auto;
     left: auto;
     right: auto;
     transform: none;
-    width: 33%;
-    padding-left: 12px;
+    flex: 0 0 30%;
+    width: 30%;
+    z-index: 10;
+    padding-left: 16px;
   }
+  .landing-intro h1 { font-size: 44px; line-height: 1.1; }
 
+  /* RIGHT column – info panel */
   .landing-info {
     position: relative;
     bottom: auto;
     top: auto;
-    z-index: inherit;
-    text-align: left;
-    transform: none;
     right: auto;
     left: auto;
-    width: 33%;
-    padding-right: 12px;
+    transform: none;
+    flex: 0 0 30%;
+    width: 30%;
+    z-index: 10;
+    padding-right: 16px;
+    text-align: left;
   }
 
-  .landing-info h2 {
-    justify-content: flex-start;
+  h2.landing-info-h2 { justify-content: flex-start; }
+
+  /* character-container: pulled out of flex flow, no size */
+  .character-container {
+    position: static;
+    width: 0;
+    height: 0;
+    overflow: visible;
   }
 
-  /* center model column */
+  /* model: fixed full-screen overlay behind text */
   .character-model {
-    position: relative;
-    left: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    bottom: auto;
     transform: none;
-    width: 33%;
-    height: 80vh;
-    bottom: 0;
-    z-index: 0;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .landing-intro {
-    top: 50%;
-    left: auto;
-    right: 70%;
-    transform: translate(0%, -50%);
+    z-index: 1;
+    pointer-events: none;
   }
 
-  .landing-info {
-    bottom: auto;
-    top: 51%;
-    z-index: inherit;
-    text-align: left;
-    transform: translate(0%, -50%);
-    right: auto;
-    left: 70%;
-    width: 28vw;
-  }
+  .character-hover { pointer-events: auto; }
 }
+
+/* =====================================================
+   1200 px +  – wider spacing only
+   ===================================================== */
+@media screen and (min-width: 1200px) {
+  .landing-intro    { flex: 0 0 28%; width: 28%; }
+  .landing-info     { flex: 0 0 28%; width: 28%; }
+  .landing-intro h1 { font-size: 52px; }
+  h2.landing-info-h2 { font-size: 62px; }
+}
+
+/* =====================================================
+   1600 px +  – large display tweaks
+   ===================================================== */
 @media screen and (min-width: 1600px) {
-  .landing-intro h2 {
-    font-size: 35px;
-  }
-  .landing-intro h1 {
-    font-size: 60px;
-    line-height: 55px;
-  }
-  .landing-info h3 {
-    font-size: 35px;
-  }
-  .landing-info h2 {
-    font-size: 65px;
-    line-height: 62px;
-  }
-  h2.landing-info-h2 {
-    font-size: 75px;
-  }
+  .landing-intro h2  { font-size: 35px; }
+  .landing-intro h1  { font-size: 60px; line-height: 55px; }
+  .landing-info h3   { font-size: 35px; }
+  h2.landing-info-h2 { font-size: 75px; line-height: 62px; }
 }
