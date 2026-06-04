@@ -56,7 +56,7 @@ const Contact = () => {
               Designed and Developed <br /> by <span>L.V. Reshma Shree</span>
             </h2>
             <h5>
-              <MdCopyright /> 2025
+              <MdCopyright /> 2026 L.V. Reshma Shree. All rights reserved.
             </h5>
           </div>
         </div>

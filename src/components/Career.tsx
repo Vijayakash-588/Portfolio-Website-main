@@ -39,6 +39,18 @@ const Career = () => {
               insights to support UX decision-making and feature prioritization.
             </p>
           </div>
+                    <div className="career-info-box">
+            <div className="career-info-in">
+              <div className="career-role">
+                <h4>Digital Marketing intern || Graphics Design</h4>
+                <h5>DVILITE</h5>
+              </div>
+              <h3>FEB–MAY 2026</h3>
+            </div>
+            <p>
+              Developed responsive,user-friendly carousels and promotion designs.Applied SEO fundamentals and modern UI/UX practices to improve user engagement.Helped digital marketing team to improve company growth and promotions.
+            </p>
+          </div>
         </div>
       </div>
     </div>
