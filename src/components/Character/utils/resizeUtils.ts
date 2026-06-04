@@ -28,6 +28,6 @@ export default function handleResize(
       trigger.kill();
     }
   });
-  setCharTimeline(character, camera);
+  setCharTimeline(character);
   setAllTimeline();
 }
