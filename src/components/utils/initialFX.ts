@@ -71,7 +71,7 @@ export function initialFX() {
         }
       );
       gsap.fromTo(
-        [".header", ".icons-section", ".nav-fade"],
+        [".header", ".icons-section", ".nav-fade", ".landing-circle1", ".landing-circle2"],
         { opacity: 0 },
         {
           opacity: 1,
@@ -101,7 +101,7 @@ export function initialFX() {
         { opacity: 1, y: 0, duration: 1, delay: 0.8 }
       );
       gsap.fromTo(
-        [".header", ".icons-section", ".nav-fade"],
+        [".header", ".icons-section", ".nav-fade", ".landing-circle1", ".landing-circle2"],
         { opacity: 0 },
         { opacity: 1, duration: 1, delay: 0.1 }
       );

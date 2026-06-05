@@ -122,6 +122,19 @@ body {
   z-index: 1;
 }
 
+@media screen and (max-width: 767px) {
+  body {
+    /* Allow native scroll on mobile — ScrollSmoother won't activate */
+    overflow-y: auto !important;
+  }
+  #smooth-wrapper,
+  #smooth-content {
+    /* Remove any overflow clip that can hide fixed-position circles */
+    overflow: visible !important;
+    height: auto !important;
+  }
+}
+
 @media screen and (min-width: 768px) {
   body {
     --cWidth: 94%;

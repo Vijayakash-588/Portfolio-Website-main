@@ -51,6 +51,21 @@ const Work = () => {
   }
 
   function initTimeline() {
+    // On mobile: kill any existing pin and let CSS vertical layout take over
+    if (window.innerWidth <= 767) {
+      if (timeline) {
+        try { timeline.kill(); } catch (e) {}
+        ScrollTrigger.getById("work")?.kill();
+        timeline = null;
+      }
+      // Reset any GSAP inline transforms so CSS can position freely
+      const workFlex = document.querySelector(".work-flex") as HTMLElement | null;
+      if (workFlex) gsap.set(workFlex, { clearProps: "all" });
+      const workSection = document.querySelector(".work-section") as HTMLElement | null;
+      if (workSection) gsap.set(workSection, { clearProps: "all" });
+      return;
+    }
+
     setTranslateX();
 
     if (timeline) {
