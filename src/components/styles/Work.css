@@ -1,69 +1,23 @@
-.work-section h2 {
-  margin-top: 100px;
-  font-size: 70px;
-  font-weight: 500;
-}
-.work-section h2 > span {
-  color: var(--accentColor);
-}
+/* ===================================================
+   WORK SECTION — base (desktop horizontal scroll)
+   =================================================== */
 .work-section {
   transition: 0s;
   height: 100vh;
   box-sizing: border-box;
   will-change: transform;
 }
-
-/* ── Mobile: disable GSAP pin, stack cards vertically ── */
-@media only screen and (max-width: 767px) {
-  .work-section {
-    height: auto !important;
-    /* Override any GSAP inline styles */
-    transform: none !important;
-  }
-  .work-section h2 {
-    font-size: 38px;
-    margin-top: 60px;
-    margin-bottom: 20px;
-  }
-  .work-container {
-    width: calc(100% - 30px);
-    align-content: normal;
-  }
-  .work-flex {
-    flex-direction: column;
-    height: auto;
-    padding-right: 0;
-    gap: 0;
-    /* Override any GSAP inline x transform */
-    transform: none !important;
-  }
-  .work-box {
-    width: 100%;
-    padding: 24px 16px;
-    gap: 24px;
-    border-right: none;
-    border-bottom: 1px solid #363636;
-  }
-  .work-flex .work-box:nth-child(even) {
-    flex-direction: column;
-  }
-  .work-image img {
-    max-height: 200px;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-  .work-title h3 {
-    font-size: 30px;
-    line-height: 30px;
-  }
-  .work-info h4 {
-    font-size: 14px;
-  }
-  .work-info p {
-    font-size: 13px;
-  }
+.work-section h2 {
+  margin-top: 80px;
+  margin-bottom: 0;
+  font-size: 70px;
+  font-weight: 500;
 }
+.work-section h2 > span {
+  color: var(--accentColor);
+}
+
+/* container */
 .work-container {
   margin: auto;
   display: flex;
@@ -71,6 +25,8 @@
   height: 100%;
   align-content: stretch;
 }
+
+/* horizontal scroll strip */
 .work-flex {
   width: 100%;
   display: flex;
@@ -79,20 +35,8 @@
   padding-right: 120px;
   position: relative;
 }
-.work-box {
-  padding: 80px;
-  display: flex;
-  flex-direction: column;
-  width: 600px;
-  box-sizing: border-box;
-  border-right: 1px solid #363636;
-  flex-shrink: 0;
-  gap: 50px;
-  justify-content: start;
-}
-.work-flex .work-box:nth-child(even) {
-  flex-direction: column-reverse;
-}
+
+/* hairlines that span infinitely left/right */
 .work-flex::before,
 .work-flex::after {
   content: "";
@@ -107,56 +51,162 @@
 .work-flex::after {
   top: 100%;
 }
+
+/* ── individual card ── */
+.work-box {
+  padding: 40px 48px;
+  display: flex;
+  flex-direction: column;
+  /* info on top, image on bottom — consistent for all cards */
+  justify-content: space-between;
+  width: 480px;
+  min-width: 480px;
+  box-sizing: border-box;
+  border-right: 1px solid #363636;
+  flex-shrink: 0;
+  gap: 28px;
+}
+
+/* Remove the column-reverse so all cards have the same order */
+.work-flex .work-box:nth-child(even) {
+  flex-direction: column;
+}
+
+/* ── card header: number + title/category ── */
 .work-title {
   justify-content: space-between;
   display: flex;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 0;
+  align-items: flex-start;
 }
 .work-title > div {
   text-align: right;
 }
 .work-title h3 {
-  font-size: 50px;
-  line-height: 50px;
+  font-size: 42px;
+  line-height: 1;
   margin: 0;
   font-weight: 600;
+  color: var(--accentColor);
+  opacity: 0.6;
+}
+.work-title h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 2px;
+  color: #eae5ec;
+}
+.work-title p {
+  font-size: 12px;
+  font-weight: 300;
+  color: #888;
+  margin: 0;
+  letter-spacing: 0.5px;
 }
 
-.work-info h4 {
-  font-size: 18px;
-  font-weight: 400;
+/* ── meta block: role / tools / about ── */
+.work-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.work-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.work-info h4,
+.work-meta h4 {
+  font-size: 10px;
+  font-weight: 600;
+  margin: 10px 0 2px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #666;
+}
+.work-info p,
+.work-meta p {
+  font-size: 13px;
+  font-weight: 300;
+  color: #bbb;
   margin: 0;
+  line-height: 1.5;
 }
-.work-info p {
-  font-weight: 200;
-  color: #adacac;
-  margin: 0;
-  margin-top: 3px;
+.work-desc {
+  font-size: 12.5px !important;
+  line-height: 1.65 !important;
+  color: #999 !important;
+  max-width: 100%;
 }
-.work-info > p {
-  width: 90%;
+
+/* ── live client badge ── */
+.work-type-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 40px;
+  background: linear-gradient(
+    135deg,
+    rgba(167, 139, 250, 0.12),
+    rgba(244, 114, 182, 0.12)
+  );
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  color: #c4a4ff;
+  width: fit-content;
+  margin-bottom: 4px;
 }
+
+/* ── image area ── */
 .work-image {
   display: flex;
   width: 100%;
   justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
 }
 .work-image-in {
   position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
+.work-image img {
+  max-width: 100%;
+  max-height: 220px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
+}
+.work-image video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #000;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* ── link overlay button ── */
 .work-link {
   position: absolute;
   bottom: 10px;
   right: 10px;
   background-color: var(--backgroundColor);
-  width: 50px;
-  border-radius: 50px;
-  height: 50px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 25px;
+  font-size: 20px;
   box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.5),
     inset 0px 0px 10px 0px #393939;
   transition: 0.3s;
@@ -168,90 +218,179 @@
 .work-image a:hover .work-link {
   opacity: 1;
 }
-.work-image video {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: #000;
-  object-fit: cover;
-}
-.work-image img {
-  max-width: 100%;
-  max-height: 350px;
-}
-@media only screen and (max-height: 900px) {
-  .work-image img {
-    max-height: 250px;
-  }
+
+/* ===================================================
+   RESPONSIVE — 1600px
+   =================================================== */
+@media only screen and (max-width: 1600px) {
   .work-box {
-    padding-top: 40px;
-    padding-bottom: 40px;
+    width: 420px;
+    min-width: 420px;
+    padding: 36px 40px;
   }
   .work-section h2 {
     font-size: 60px;
-    margin-bottom: 30px;
-    margin-top: 70px;
   }
 }
+
+/* ===================================================
+   RESPONSIVE — 1400px
+   =================================================== */
 @media only screen and (max-width: 1400px) {
-  .work-title h3 {
-    font-size: 35px;
-  }
-  .work-info p {
-    font-size: 13px;
-  }
-  .work-info h4 {
-    font-size: 15px;
-  }
   .work-box {
-    width: 450px;
-    padding: 50px;
+    width: 380px;
+    min-width: 380px;
+    padding: 32px;
+    gap: 22px;
   }
   .work-flex {
-    margin-left: 0;
     padding-right: 75px;
   }
   .work-section h2 {
     font-size: 50px;
+    margin-top: 60px;
   }
-}
-@media only screen and (max-width: 1400px) {
-  .work-box {
-    width: 350px;
-    padding: 30px;
+  .work-title h3 {
+    font-size: 36px;
   }
-  .work-flex {
-    margin-left: 0;
-    padding-right: 45px;
+  .work-image img {
+    max-height: 190px;
   }
 }
 
+/* ===================================================
+   RESPONSIVE — 1200px
+   =================================================== */
+@media only screen and (max-width: 1200px) {
+  .work-box {
+    width: 340px;
+    min-width: 340px;
+    padding: 28px;
+    gap: 18px;
+  }
+  .work-flex {
+    padding-right: 50px;
+  }
+  .work-image img {
+    max-height: 170px;
+  }
+}
+
+/* ===================================================
+   RESPONSIVE — short screens
+   =================================================== */
+@media only screen and (max-height: 800px) {
+  .work-section h2 {
+    font-size: 50px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+  }
+  .work-image img {
+    max-height: 180px;
+  }
+  .work-box {
+    padding-top: 28px;
+    padding-bottom: 28px;
+    gap: 16px;
+  }
+}
 @media only screen and (max-height: 650px) {
-  .work-image img {
-    max-height: 200px;
-  }
   .work-section h2 {
-    font-size: 40px;
-    margin-bottom: 20px;
+    font-size: 36px;
+    margin-top: 36px;
+  }
+  .work-image img {
+    max-height: 140px;
   }
   .work-box {
-    gap: 20px;
+    gap: 12px;
+    padding: 20px 24px;
   }
 }
+
+/* ===================================================
+   RESPONSIVE — tablet 768–900px
+   =================================================== */
 @media only screen and (max-width: 900px) and (min-width: 768px) {
-  .work-image img {
-    max-height: 200px;
-  }
   .work-section h2 {
-    font-size: 40px;
-    margin-bottom: 20px;
+    font-size: 38px;
+    margin-top: 50px;
   }
   .work-box {
-    gap: 20px;
+    width: 300px;
+    min-width: 300px;
+    padding: 24px;
+    gap: 16px;
+  }
+  .work-container {
+    align-content: normal;
+  }
+  .work-flex {
+    height: auto;
+    padding-right: 30px;
+  }
+  .work-image img {
+    max-height: 160px;
   }
 }
+
+/* ===================================================
+   RESPONSIVE — mobile ≤767px  (vertical stack)
+   =================================================== */
+@media only screen and (max-width: 767px) {
+  .work-section {
+    height: auto !important;
+    transform: none !important;
+  }
+  .work-section h2 {
+    font-size: 34px;
+    margin-top: 60px;
+    margin-bottom: 16px;
+  }
+  .work-container {
+    width: calc(100% - 30px);
+    align-content: normal;
+  }
+  .work-flex {
+    flex-direction: column;
+    height: auto;
+    padding-right: 0;
+    gap: 0;
+    transform: none !important;
+  }
+  .work-box {
+    width: 100%;
+    min-width: unset;
+    padding: 24px 16px;
+    gap: 20px;
+    border-right: none;
+    border-bottom: 1px solid #363636;
+    flex-direction: column !important; /* always info → image */
+    justify-content: flex-start;
+  }
+  .work-title h3 {
+    font-size: 28px;
+  }
+  .work-title h4 {
+    font-size: 14px;
+  }
+  .work-image img {
+    max-height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  .work-desc {
+    font-size: 12px !important;
+  }
+  .work-type-badge {
+    font-size: 8px;
+  }
+}
+
+/* ===================================================
+   RESPONSIVE — 1025px misc fix
+   =================================================== */
 @media only screen and (max-width: 1025px) {
   .work-container {
     align-content: normal;
@@ -261,12 +400,12 @@
   }
 }
 
-/* Native horizontal scroll fallback when GSAP isn't active */
+/* ===================================================
+   Native horizontal scroll fallback
+   =================================================== */
 .work-scroll-native .work-flex {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-}
-.work-scroll-native .work-flex {
   display: flex;
 }
 .work-scroll-native .work-box {
