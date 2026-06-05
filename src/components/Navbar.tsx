@@ -73,9 +73,22 @@ const Navbar = () => {
         if (window?.ScrollSmoother) window.ScrollSmoother.refresh(true);
       } catch (e) {}
     });
+    // Frosted-glass scroll class
+    const headerEl = document.querySelector(".header") as HTMLElement | null;
+    const onScroll = () => {
+      if (!headerEl) return;
+      if (window.scrollY > 10) {
+        headerEl.classList.add("header--scrolled");
+      } else {
+        headerEl.classList.remove("header--scrolled");
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
     return () => {
       mounted = false;
       window.removeEventListener("resize", () => {});
+      window.removeEventListener("scroll", onScroll);
     };
   }, []);
 

@@ -1,3 +1,15 @@
+/* ── Entrance animation ── */
+@keyframes navSlideDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
 .header {
   display: flex;
   max-width: var(--cMaxWidth);
@@ -11,7 +23,27 @@
   transform: translateX(-50%);
   top: 0;
   z-index: 9999;
+
+  /* Entrance */
+  animation: navSlideDown 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  /* Frosted-glass background (appears as you scroll via JS class, but looks great always) */
+  transition: background 0.4s ease, backdrop-filter 0.4s ease,
+    box-shadow 0.4s ease, padding 0.3s ease;
 }
+
+/* Scrolled state — add class "header--scrolled" via JS for the full effect */
+.header--scrolled {
+  background: rgba(10, 8, 18, 0.65);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 8px 32px rgba(0, 0, 0, 0.45);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 14px 0px !important;
+}
+
+/* ── Nav list ── */
 .header ul {
   font-size: 12px;
   display: flex;
@@ -23,6 +55,7 @@
   row-gap: 8px;
   align-items: end;
 }
+
 .header ul li {
   margin-left: 0px;
   letter-spacing: 1px;
@@ -30,6 +63,60 @@
   font-weight: 600;
   cursor: pointer;
 }
+
+/* ── Animated underline on nav links ── */
+.header ul a {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  padding-bottom: 3px;
+}
+
+.header ul a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0%;
+  height: 1.5px;
+  background: linear-gradient(90deg, #a78bfa, #f472b6);
+  border-radius: 99px;
+  transform: translateX(-50%);
+  transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.header ul a:hover::after {
+  width: 100%;
+}
+
+/* Subtle lift on list items */
+.header ul li {
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.header ul li:hover {
+  color: #f0ebf8;
+  transform: translateY(-2px);
+}
+
+/* ── Navbar title glow ── */
+.navbar-title {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  position: relative;
+  text-decoration: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.navbar-title:hover {
+  color: #e8d5ff;
+  text-shadow: 0 0 18px rgba(167, 139, 250, 0.7),
+    0 0 40px rgba(167, 139, 250, 0.3);
+  letter-spacing: 1.5px;
+}
+
+/* ── Email connect hover ── */
 .navbar-connect {
   position: absolute;
   display: none;
@@ -39,12 +126,20 @@
   font-size: 15px;
   letter-spacing: 1px;
   font-weight: 500;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease, text-shadow 0.3s ease, letter-spacing 0.3s ease;
+  position: absolute;
 }
-.navbar-title {
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.2px;
+
+.navbar-connect:hover {
+  color: #f9d4ff;
+  text-shadow: 0 0 14px rgba(244, 114, 182, 0.65),
+    0 0 32px rgba(244, 114, 182, 0.25);
+  letter-spacing: 1.8px;
 }
+
+/* ── Responsive ── */
 @media only screen and (min-width: 500px) {
   .header {
     padding: 20px 0px;
@@ -81,3 +176,4 @@
     font-size: 18px;
   }
 }
+
