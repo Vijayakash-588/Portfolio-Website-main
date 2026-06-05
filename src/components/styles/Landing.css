@@ -22,36 +22,38 @@
   left: 0%;
   z-index: 15;
   position: fixed;
-  width: 300px;
-  height: 300px;
+  /* Smaller on mobile so it's actually visible */
+  width: 200px;
+  height: 200px;
   background-color: #fb8dff;
   box-shadow: inset -50px 40px 50px rgba(84, 0, 255, 0.6);
-  filter: blur(60px);
+  filter: blur(50px);
   border-radius: 50%;
   animation: loadingCircle 5s linear infinite;
 }
 @keyframes loadingCircle {
-  0%   { transform: translate(-95%, -75%) rotateZ(0deg); }
-  100% { transform: translate(-95%, -75%) rotateZ(360deg); }
+  0%   { transform: translate(-45%, -45%) rotateZ(0deg); }
+  100% { transform: translate(-45%, -45%) rotateZ(360deg); }
 }
 
 .landing-circle2 {
   top: 50%;
   right: 0%;
-  transform: translate(calc(100% - 2px), -50%);
   z-index: 9;
   position: fixed;
-  display: none;
-  width: 300px;
-  height: 300px;
+  /* Visible on all screen sizes — smaller on mobile */
+  display: block;
+  width: 180px;
+  height: 180px;
   background-color: #fb8dff;
   box-shadow: inset -50px 40px 50px rgba(84, 0, 255, 0.6);
-  filter: blur(50px);
+  filter: blur(45px);
   border-radius: 50%;
   animation: loadingCircle2 5s linear infinite;
 }
 @keyframes loadingCircle2 {
-  100% { transform: translate(calc(100% - 2px), -50%) rotate(360deg); }
+  0%   { transform: translate(45%, -50%) rotate(0deg); }
+  100% { transform: translate(45%, -50%) rotate(360deg); }
 }
 
 /* ---- nav fade ---- */
@@ -238,7 +240,9 @@ h2.landing-info-h2 {
    500 px +
    ===================================================== */
 @media screen and (min-width: 500px) {
-  .landing-circle2 { display: block; }
+  /* Circle sizes scale up */
+  .landing-circle1 { width: 280px; height: 280px; }
+  .landing-circle2 { width: 260px; height: 260px; }
   .landing-info h3       { font-size: 18px; }
   .landing-intro h2      { font-size: 18px; }
   .landing-intro h1      { font-size: 30px; line-height: 30px; }
@@ -261,6 +265,9 @@ h2.landing-info-h2 {
    Text columns on sides, model as fixed full-screen overlay
    ===================================================== */
 @media screen and (min-width: 900px) {
+  /* Restore original full-size circles on desktop */
+  .landing-circle1 { width: 300px; height: 300px; }
+  .landing-circle2 { width: 300px; height: 300px; }
   /* hide mobile gradient overlays */
   .character-model::after,
   .character-model::before { display: none; }
