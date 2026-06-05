@@ -53,7 +53,7 @@ const projects: Project[] = [
       "UI design for the live website of Shrestha Cloud Solutions, an IT consulting and software development company. Designed a clean, responsive, and user-friendly website with improved navigation, visual hierarchy, and service-focused layouts.",
     outcome:
       "Delivered a modern corporate website experience that enhances usability and strengthens the company's online presence.",
-    image: "/images/placeholder.webp",
+    image: "/images/Shrestha mockup.png",
     type: "Live Client Project",
   },
   {
@@ -65,8 +65,20 @@ const projects: Project[] = [
       "UI design for Konnectly — a live SaaS CRM platform helping businesses manage customer relationships, automate communication, and leverage AI-powered tools. Created intuitive UI screens with clear navigation, structured data visualization, and a modern design system.",
     outcome:
       "Delivered a professional and responsive user experience that improved accessibility, streamlined workflows, and supported the platform's business management goals.",
-    image: "/images/placeholder.webp",
+    image: "/images/sketches mockup.png",
     type: "Live Client Project · CRM, AI & Business Automation",
+  },
+    {
+    title: "Scent Branding platform",
+    category: "SaaS Platform · Internship",
+    role: "UI/UX Design Intern",
+    tools: "Figma",
+    description:
+      "UI design for Scent branding— a live SaaS CRM platform helping businesses manage customer relationships, automate communication, and leverage AI-powered tools. Created intuitive UI screens with clear navigation, structured data visualization, and a modern design system.",
+    outcome:
+      "Delivered a professional and responsive user experience that improved accessibility, streamlined workflows, and supported the platform's business management goals.",
+    image: "/images/poster mockup.png",
+    type: "Branding Promotions",
   },
 ];
 
