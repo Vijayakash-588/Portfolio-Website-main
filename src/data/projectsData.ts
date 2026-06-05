@@ -57,24 +57,24 @@ const projects: Project[] = [
     type: "Live Client Project",
   },
   {
-    title: "Konnectly",
-    category: "SaaS Platform · Internship",
-    role: "UI/UX Design Intern",
+    title: " Sketchers e-commerce website",
+    category: "E-commerce website",
+    role: "UI/UX Design",
     tools: "Figma",
     description:
-      "UI design for Konnectly — a live SaaS CRM platform helping businesses manage customer relationships, automate communication, and leverage AI-powered tools. Created intuitive UI screens with clear navigation, structured data visualization, and a modern design system.",
+      "Redesigned the Sketchers e-commerce website as part of my Solo level project, focusing on creating a modern, user-centric shopping experience. Improved navigation, product discovery, and overall usability through clean UI design and intuitive user flows, resulting in a seamless and engaging online shopping journey.",
     outcome:
-      "Delivered a professional and responsive user experience that improved accessibility, streamlined workflows, and supported the platform's business management goals.",
+      "Enhanced the overall shopping experience by creating a modern, user-centric interface that streamlined navigation and improved product discovery, making it easier for customers to find and purchase products seamlessly.",
     image: "/images/sketches mockup.png",
-    type: "Live Client Project · CRM, AI & Business Automation",
+    type: "Solo - Project",
   },
-    {
+  {
     title: "Scent Branding platform",
-    category: "SaaS Platform · Internship",
-    role: "UI/UX Design Intern",
+    category: "SaaS Platform",
+    role: "UI/UX Design",
     tools: "Figma",
     description:
-      "UI design for Scent branding— a live SaaS CRM platform helping businesses manage customer relationships, automate communication, and leverage AI-powered tools. Created intuitive UI screens with clear navigation, structured data visualization, and a modern design system.",
+      "UI design for Scent branding— a platform helping businesses deliver scent branding. Created intuitive UI screens with clear navigation, structured data visualization, and a modern design system.",
     outcome:
       "Delivered a professional and responsive user experience that improved accessibility, streamlined workflows, and supported the platform's business management goals.",
     image: "/images/poster mockup.png",
