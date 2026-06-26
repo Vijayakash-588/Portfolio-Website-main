@@ -106,7 +106,7 @@ function createSmootherStub() {
     <>
       <div className="header">
         <a href="/#" className="navbar-title" data-cursor="disable">
-          WELCOME
+          WELCOME!!
         </a>
         <a
           href="mailto:reshmashree004@gmail.com"
