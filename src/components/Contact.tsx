@@ -24,16 +24,7 @@ const Contact = () => {
           <div className="contact-box">
             <h4>Social</h4>
             <a
-              href="https://github.com/reshmashree"
-              target="_blank"
-              rel="noreferrer"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              Github <MdArrowOutward />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/reshma-shree"
+              href="https://www.linkedin.com/in/reshma-shree-loganathan/"
               target="_blank"
               rel="noreferrer"
               data-cursor="disable"
